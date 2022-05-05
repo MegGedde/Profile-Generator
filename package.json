@@ -1,0 +1,25 @@
+{
+  "name": "module10",
+  "version": "1.0.0",
+  "description": "README.md",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MegGedde/Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MegGedde/Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/MegGedde/Profile-Generator#readme",
+  "dependencies": {
+    "jest": "^28.0.3"
+  }
+}
