@@ -29,6 +29,6 @@ test("does email method work", () => {
 test("does role method work", () => {
         const employee = new Employee('Rachel');
         //check role
-        expect(employee.getRole()).toEqual(expect.stringContaining(employee.email.toString()));
+        expect(employee.getRole()).toEqual('Employee');
     });
 
