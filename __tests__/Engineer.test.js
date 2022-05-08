@@ -15,5 +15,5 @@ test('can use getGithub method', () => {
 test("does role method work", () => {
     const engineer = new Engineer('Fred');
     //check role
-    expect(engineer.getRole()).toEqual('Engineer');
+    expect(engineer.role).toEqual('Engineer');
 });
