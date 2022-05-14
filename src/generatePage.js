@@ -25,25 +25,27 @@ const generatePage = (employeeData
       
         <body>
           <header>
-              <h1 class="page-title text-secondary bg-dark">Team Information</h1>
+              <h1 class="page-title text-dark text-center bg-info p-3">Team Information</h1>
           </header>
         
       
     
-          <section class="team-display card-columns">
+          <section class="team-display card-columns row">
           ${employeeData.filter(({ role }) => role === "Manager")
           .map(({ name, role, id, email, office}) => {
               return `
-              <div class="team-member card p-4">
-                <div class="card-title">
+              <div class="col-3 mx-auto">
+              <div class="team-member card p-2 mx-auto">
+                <div class="card-title bg-info">
                   <h1>${name}</h1>
                   <h2>${role}</h2>
                 </div>
-                <div class="card-text">
+                <div class="card-text text-info">
                   <p>Employee Id: ${id}</p>
                   <p>Email: <a href="mailto:${email}">${email}</a></p>
                   <p>Office: ${office}</p>
                 </div>  
+              </div>
               </div>
               `;
           })
@@ -54,16 +56,18 @@ const generatePage = (employeeData
           .filter(({ role }) => role === "Engineer")
           .map(({ name, role, id, email, github}) => {
               return `
-              <div class="team-member card p-4">
-                <div class="card-title">
+              <div class="col-3 mx-auto">
+              <div class="team-member card p-2 mx-auto">
+                <div class="card-title bg-info">
                   <h1>${name}</h1>
                   <h2>${role}</h2>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Employee Id: ${id}</li>
-                  <li class="list-group-item>Email: <a href="mailto:${email}">${email}</a></li>
-                  <li class="list-group-item>GitHub: <a href="https://github.com/${github}" target="_blank">${github}</a></li>
-                </ul>
+                <div class="card-text text-info">
+                  <p>Employee Id: ${id}</p>
+                  <p>Email: <a href="mailto:${email}">${email}</a></p>
+                  <p>GitHub: <a href="https://github.com/${github}" target="_blank">${github}</a></p>
+                </div>
+                  </div>
                   </div>
               `;
           })
@@ -74,13 +78,19 @@ const generatePage = (employeeData
           .filter(({ role }) => role === "Intern")
           .map(({ name, role, id, email, school}) => {
               return `
-              <div class="team-member">
+              <div class="col-3 mx-auto">
+              <div class="team-member card p-2 mx-auto">
+              <div class="card-title bg-info">
                   <h1>${name}</h1>
                   <h2>${role}</h2>
-              
+              </div>
+              <div class="card-text text-info">
                   <p>Employee Id: ${id}</p>
                   <p>Email: <a href="mailto:${email}">${email}</a></p>
                   <p>School: ${school}</p>
+                  </div>
+              </div>
+              </div>
               </div>
               `;
           })
