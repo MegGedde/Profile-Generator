@@ -2,13 +2,14 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-// const generatePage = require('./src/generatePage')
+const generatePage = require('./src/generatePage');
 const inquirer = require('inquirer');
+const { writeFile } = require('fs');
 
 const employees = []
 
 const initializeProgram = () => {
-//start with manager's information
+// start with manager's information
     inquirer
     .prompt({
         type: 'input',
@@ -93,7 +94,7 @@ const addEmployee = () => {
     .then(({ role }) => {
       if (role === 'Finish Team') {
       console.log("Your team page has been created.")
-      // generatePage(employees)
+      generatePage(employees)
     } else {
       getInfo(role);
     }})
@@ -170,9 +171,7 @@ const getInfo = function(employeeRole) {
         });
     });
  console.log(employees);
-}
-
-// generatePage() = sadf
+};
  
-
+module.exports = employees;
 initializeProgram()

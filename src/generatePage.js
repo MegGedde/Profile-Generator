@@ -1,9 +1,14 @@
-const employees = require('./index')
 const fs = require('fs');
 
-const generatePage = data => {
-      
-        return `
+let htmlTemplate = "";
+
+const generatePage = (employeeData
+  ) => {
+      if(!employeeData
+        ) {
+        return '';
+      }
+      htmlTemplate = `
         <!DOCTYPE html>
         <html lang="en">
     
@@ -14,28 +19,94 @@ const generatePage = data => {
           <title>Portfolio Demo</title>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
           <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-          <link rel="stylesheet" href="style.css">
-        </head>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+          <link rel="stylesheet" href="./src/style.css">
+          </head>
       
         <body>
           <header>
-            <div class="container flex-row justify-space-between align-center py-3">
-              <h1 class="page-title text-secondary bg-dark py-2 px-3">${header.name}</h1>
-              <nav class="flex-row">
-                <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="https://github.com/${
-                  header.github
-                }">GitHub</a>
-              </nav>
-            </div>
+              <h1 class="page-title text-secondary bg-dark">Team Information</h1>
           </header>
-          <main class="container my-5">
-            ${generateAbout(about)}   
-            ${generateProjects(projects)}
-          </main>
-          <footer class="container text-center py-3">
-            <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
-          </footer>
-        </body>
-        </html>
-        `;
-      };
+        
+      
+    
+          <section class="team-display card-columns">
+          ${employeeData.filter(({ role }) => role === "Manager")
+          .map(({ name, role, id, email, office}) => {
+              return `
+              <div class="team-member card p-4">
+                <div class="card-title">
+                  <h1>${name}</h1>
+                  <h2>${role}</h2>
+                </div>
+                <div class="card-text">
+                  <p>Employee Id: ${id}</p>
+                  <p>Email: <a href="mailto:${email}">${email}</a></p>
+                  <p>Office: ${office}</p>
+                </div>  
+              </div>
+              `;
+          })
+      .join('')}
+  
+          ${employeeData
+
+          .filter(({ role }) => role === "Engineer")
+          .map(({ name, role, id, email, github}) => {
+              return `
+              <div class="team-member card p-4">
+                <div class="card-title">
+                  <h1>${name}</h1>
+                  <h2>${role}</h2>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Employee Id: ${id}</li>
+                  <li class="list-group-item>Email: <a href="mailto:${email}">${email}</a></li>
+                  <li class="list-group-item>GitHub: <a href="https://github.com/${github}" target="_blank">${github}</a></li>
+                </ul>
+                  </div>
+              `;
+          })
+          .join('')}
+      
+          ${employeeData
+
+          .filter(({ role }) => role === "Intern")
+          .map(({ name, role, id, email, school}) => {
+              return `
+              <div class="team-member">
+                  <h1>${name}</h1>
+                  <h2>${role}</h2>
+              
+                  <p>Employee Id: ${id}</p>
+                  <p>Email: <a href="mailto:${email}">${email}</a></p>
+                  <p>School: ${school}</p>
+              </div>
+              `;
+          })
+      .join('')}
+          </section>
+      </body>
+      </html>
+`
+
+  writeFile(htmlTemplate);
+};
+
+const writeFile = htmlTemplate => {
+  return new Promise((resolve, reject) => {
+      fs.writeFile('./dist/index.html', htmlTemplate, err =>{ 
+          if (err) {
+              reject(err);
+              return;
+          }
+          // if everything went well, resolve the promise
+          resolve({
+              ok: true,
+              message: 'file created!'
+          });
+      });
+  });
+};
+
+module.exports = generatePage, writeFile;
