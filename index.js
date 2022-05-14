@@ -2,7 +2,7 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const generatePage = require('./src/generatePage')
+// const generatePage = require('./src/generatePage')
 const inquirer = require('inquirer');
 
 const employees = []
@@ -93,7 +93,7 @@ const addEmployee = () => {
     .then(({ role }) => {
       if (role === 'Finish Team') {
       console.log("Your team page has been created.")
-      generatePage(employees)
+      // generatePage(employees)
     } else {
       getInfo(role);
     }})

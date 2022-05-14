@@ -1,11 +1,11 @@
 const Employee = require('../lib/Employee');
 
 test('does Employee have properties', () => {
-    const employee = new Employee('Rachel');
+    const employee = new Employee('Rachel', '1', 'rachel@yahoo.com');
 
-    expect(Employee.name).toBe('Rachel');
-    expect(Employee.id).toEqual(expect.any(Number));
-    expect(Employee.email).toEqual(expect.any(String));
+    expect(employee.name).toEqual('Rachel');
+    expect(employee.id).toEqual('1');
+    expect(employee.email).toEqual('rachel@yahoo.com');
    });
 
 test("does name method work", () => {
@@ -17,7 +17,7 @@ test("does name method work", () => {
 test("does Id method work", () => {
     const employee = new Employee('Rachel');
         //check ID
-        expect(employee.getId()).toEqual(expect.stringContaining(employee.Id.toString()));
+        expect(employee.getId()).toEqual(expect.stringContaining(employee.id.toString()));
     });
 
 test("does email method work", () => {

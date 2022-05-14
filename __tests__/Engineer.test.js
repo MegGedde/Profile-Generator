@@ -1,15 +1,15 @@
 const Engineer = require('../lib/Engineer');
 
 test('can get github name', () => {
-    const engineer = new Engineer('Fred')
+    const engineer = new Engineer('Fred', '2', 'asdf@yahoo', 'fredscode')
 
-   expect(engineer.github).toEqual(expect.any(String))
+   expect(engineer.github).toEqual('fredscode')
 })
 
 test('can use getGithub method', () => {
-    const engineer = new Engineer('Fred')
+    const engineer = new Engineer('Fred', '2', 'asdf@yahoo', 'fredscode')
 
-    expect(engineer.getGithub()).toEqual(expect.stringContaining(manager.github.toString()));
+    expect(engineer.getGitHub()).toEqual('fredscode');
 })
 
 test("does role method work", () => {
